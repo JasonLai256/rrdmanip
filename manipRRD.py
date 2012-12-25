@@ -53,6 +53,8 @@ class RRDManip(object):
         Feeds data values into an RRD.
         """
         timestamp = int(timestamp)
+        if not isinstance(values, list):
+            values = [values]
         self.rrd.bufferValue(timestamp, *values)
         self.rrd.update()
 
