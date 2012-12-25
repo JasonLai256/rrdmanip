@@ -58,8 +58,10 @@ class RRDManip(object):
         self.rrd.bufferValue(timestamp, *values)
         self.rrd.update()
 
-    def fetch(self, cf='AVERAGE', resolution=None, start=None, end=None):
+    def fetch(self, cf='AVERAGE', resolution=None, start=None, end=None, returnStyle="ds"):
         """
         Fetch data values from an RRD.
+
+        :param returnStyle: 指定返回的数据格式，包括有'ds' 和 'time'
         """
-        pass
+        return self.rrd.fetch(cf, resolution, start, end, returnStyle)

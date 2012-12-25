@@ -13,10 +13,12 @@ DataSource = {
 }
 
 # rra 的相关设置
+
+# 5 min, 12 * 24 * 365 ~ 1 year
 MAX_5M_1Y_RRA = {
     'cf': 'MAX',
     'xff': 0.5,
-    'steps': 1,    # 5 min, 12 * 24 * 365 ~ 1 year
+    'steps': 1,
     'rows': 105120
 }
 

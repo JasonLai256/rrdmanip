@@ -7,7 +7,6 @@ import os
 import hashlib
 
 
-
 _rrds = {}
 
 
@@ -46,7 +45,7 @@ def register_rrd(domain):
         _rrds[domain].ensure_rrd()
 
 
-def get_rrd(domain):
+def get_bw_rrd(domain):
     if domain not in _rrds:
         register_rrd(domain)
     return _rrds[domain]
