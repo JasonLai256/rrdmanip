@@ -35,7 +35,7 @@ def register_rrd(domain):
     """Add a RRDManip."""
     if domain not in _rrds:
         filepath = figure_path(domain)
-        roundRobinArchives = settings.MAX_RRA
+        roundRobinArchives = settings.MAX_RRA + settings.AVERAGE_RRA
         datasource = settings.DataSource.copy()
         # 取 domain 的右起第二段为 dsName，即 a.myzaker.com -> myzaker
         dsname = domain.rsplit('.', 2)[-2]
