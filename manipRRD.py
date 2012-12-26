@@ -43,8 +43,9 @@ class RRDManip(object):
         """
         dataSources = [DataSource(**ds) for ds in self.dataSources]
         roundRobinArchives = [RRA(**rra) for rra in self.roundRobinArchives]
-        now = int(time.time())
-        self.rrd = RRD(self.filename, start=now, step=self.step,
+        # start 时间设定为当前时间的一天前，86400 即一天内包含的秒数
+        past_one_day = int(time.time()) - 86400
+        self.rrd = RRD(self.filename, start=past_one_day, step=self.step,
                        ds=dataSources, rra=roundRobinArchives, )
         self.rrd.create()
 
