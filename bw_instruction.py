@@ -14,7 +14,7 @@ def figure_path(domain):
     """
     通过 domain 构建出相应的路径，并在构建的过程中监测目录是否存在，若不存在则创建
     
-    figure method:   a.myzaker.com -> DATAPATH/3/e5/a.myzaker.com.rrd
+    figure method:   a.google.com -> DATAPATH/3/e5/a.google.com.rrd
     """
     join = os.path.join
 
@@ -33,7 +33,7 @@ def figure_path(domain):
 
 def figure_bw_dsname(domain):
     """
-    取 domain 的右起第二段为 dsName，即 a.myzaker.com -> myzaker
+    取 domain 的右起第二段为 dsName，即 a.google.com -> google
     """
     return domain.rsplit('.', 2)[-2]
     
