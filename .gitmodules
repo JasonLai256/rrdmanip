@@ -1,0 +1,3 @@
+[submodule "pyrrd"]
+	path = pyrrd
+	url = https://code.google.com/p/pyrrd/
