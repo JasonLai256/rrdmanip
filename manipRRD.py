@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from pyrrd.rrd import DataSource, RRA, RRD
+from pyrrd.graph import Graph
 
 import time
 import os
@@ -66,3 +67,62 @@ class RRDManip(object):
         :param returnStyle: 指定返回的数据格式，包括有'ds' 和 'time'
         """
         return self.rrd.fetch(cf, resolution, start, end, returnStyle)
+
+
+class RRDGraph(object):
+
+    def __init__(self, filename, start=None, end=None, step=None, title='',
+                 vertical_label='', width=600, height=180, color=None):
+        self.filename = filename
+        self.start = start
+        self.end = end
+        self.step = step
+        self.height = height
+        self.width = width
+        self.title = title
+        self.vertical_label = vertical_label
+        self.color = color
+        self.graph = None        
+
+    def prepare(self, defs, cdefs, vdefs, lines, areas, gprints, gcomments):
+        # check None variable
+        if not defs:
+            defs = []
+        if not cdefs:
+            cdefs = []
+        if not vdefs:
+            vdefs = []
+        if not lines:
+            lines = []
+        if not areas:
+            areas = []
+        if not gprints:
+            gprints = []
+        if not gcomments:
+            gcomments = []
+        
+        # check instance
+        if isinstance(defs, basestring):
+            defs = [defs]
+        if isinstance(cdefs, basestring):
+            cdefs = [cdefs]
+        if isinstance(vdefs, basestring):
+            vdefs = [vdefs]
+        if isinstance(lines, basestring):
+            lines = [lines]
+        if isinstance(areas, basestring):
+            areas = [areas]
+        if isinstance(gprints, basestring):
+            gprints = [gprints]
+        if isinstance(gcomments, basestring):
+            gcomments = [gcomments]
+
+        args = defs + cdefs + vdefs + lines + areas + gprints + gcomments
+        self.graph = Graph(self.filename, start=self.start, end=self.end,
+                           step=self.step, height=self.height, width=self.width,
+                           title=self.title, vertical_label=self.vertical_label,
+                           color=self.color)
+        self.graph.extend(args)
+
+    def plot(self):
+        self.graph.write()
