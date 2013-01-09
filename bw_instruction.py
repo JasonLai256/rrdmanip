@@ -2,33 +2,10 @@
 
 import settings
 from manipRRD import RRDManip
-
-import os
-import hashlib
+from instruction import figure_path
 
 
 _rrds = {}
-
-
-def figure_path(domain):
-    """
-    通过 domain 构建出相应的路径，并在构建的过程中监测目录是否存在，若不存在则创建
-    
-    figure method:   a.google.com -> DATAPATH/3/e5/a.google.com.rrd
-    """
-    join = os.path.join
-
-    md5 = hashlib.md5()
-    md5.update(domain)
-    hashstr = md5.hexdigest()
-    parts = [settings.DATA_PATH, hashstr[0], hashstr[1:3], '%s.rrd' % domain]
-
-    # 监测各级目录是否已经存在或需要创建
-    for index in range(2, 4):
-        path = os.path.join(*parts[:index])
-        if not os.path.exists(path):
-            os.mkdir(path)
-    return os.path.join(*parts)
 
 
 def figure_bw_dsname(domain):
