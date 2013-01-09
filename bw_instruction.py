@@ -16,7 +16,8 @@ def figure_bw_dsname(domain):
     
 
 def register_rrd(domain):
-    """Add a RRDManip."""
+    """Register a RRDManip."""
+    global _rrds
     if domain not in _rrds:
         filepath = figure_path(domain)
         roundRobinArchives = settings.MAX_RRA + settings.AVERAGE_RRA
@@ -29,6 +30,7 @@ def register_rrd(domain):
 
 
 def get_bw_rrd(domain):
+    global _rrds
     if domain not in _rrds:
         register_rrd(domain)
     return _rrds[domain]

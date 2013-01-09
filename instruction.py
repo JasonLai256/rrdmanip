@@ -6,7 +6,7 @@ import os
 import hashlib
 
 
-def figure_path(target):
+def figure_path(target, datapath=None):
     """
     通过 target 构建出相应的路径，并在构建的过程中监测目录是否存在，若不存在则创建
     
@@ -15,7 +15,9 @@ def figure_path(target):
     md5 = hashlib.md5()
     md5.update(target)
     hashstr = md5.hexdigest()
-    parts = [settings.DATA_PATH, hashstr[0], hashstr[1:3], '%s.rrd' % target]
+    if not datapath:
+        datapath = settings.DATA_PATH
+    parts = [datapath, hashstr[0], hashstr[1:3], '%s.rrd' % target]
 
     # 监测各级目录是否已经存在或需要创建
     for index in range(2, 4):
