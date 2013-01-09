@@ -9,7 +9,7 @@ _rrds = {}
 _graphs = {}
 
 
-def register_rrd(target, dsNames, dsType='GAUGE'):
+def register_mnt_rrd(target, dsNames, dsType='GAUGE'):
     """Register a RRDManip.
 
     :param target: 用于构造 rrd 文件名以及做为内部rrd对象缓存的 key
@@ -17,7 +17,7 @@ def register_rrd(target, dsNames, dsType='GAUGE'):
     :param dsType: 用于指定 data source 类型
     """
     global _rrds
-    if target not in _rrds:
+    if (target not in _rrds) or (_rrds[target] is None):
         filepath = figure_path(target)
         roundRobinArchives = settings.PRECISE_MAX_RRA + \
                              settings.PRECISE_AVERAGE_RRA
@@ -32,7 +32,7 @@ def register_rrd(target, dsNames, dsType='GAUGE'):
         _rrds[target].ensure_rrd()
 
 
-def register_graph(target, init_args, prep_args):
+def register_mnt_graph(target, init_args, prep_args):
     """
     Register a RRDGraph.
 
@@ -40,7 +40,7 @@ def register_graph(target, init_args, prep_args):
     :param prep_args: 确定设置 RRDGraph 的所需参数，应该为 dict 类型
     """
     global _graphs
-    if target not in _graphs:
+    if (target not in _graphs) or (_graphs[target] is None):
         _graphs[target] = RRDGraph(**init_args)
         _graphs[target].prepare(**prep_args)
 

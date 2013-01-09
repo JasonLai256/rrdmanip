@@ -10,3 +10,5 @@ __author__ = 'jason lai'
 
 
 from bw_instruction import get_bw_rrd, figure_bw_dsname
+from mnt_instruction import register_mnt_rrd, register_mnt_rrd, \
+                            get_mnt_rrd, get_mnt_graph
