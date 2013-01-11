@@ -47,7 +47,7 @@ class RRDManip(object):
         # start 时间设定为当前时间的一天前，86400 即一天内包含的秒数
         past_one_day = int(time.time()) - 86400
         self.rrd = RRD(self.filename, start=past_one_day, step=self.step,
-                       ds=dataSources, rra=roundRobinArchives, )
+                       ds=dataSources, rra=roundRobinArchives)
         self.rrd.create()
 
     def update(self, timestamp, values):
@@ -55,7 +55,7 @@ class RRDManip(object):
         Feeds data values into an RRD.
         """
         timestamp = int(timestamp)
-        if not isinstance(values, list):
+        if not isinstance(values, list) and not isinstance(values, tuple):
             values = [values]
         self.rrd.bufferValue(timestamp, *values)
         self.rrd.update()
