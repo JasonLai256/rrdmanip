@@ -17,9 +17,9 @@ class RRDManip(object):
         :param dataSources: 相关的 data Source 队列
         :param roundRobinArchives: 相关的 rra 队列
         """
-        if isinstance(dataSources, basestring):
+        if not isinstance(values, list) and not isinstance(values, tuple):
             dataSources = [dataSources]
-        if isinstance(dataSources, basestring):
+        if not isinstance(values, list) and not isinstance(values, tuple):
             roundRobinArchives = [roundRobinArchives]
 
         self.dataSources = dataSources

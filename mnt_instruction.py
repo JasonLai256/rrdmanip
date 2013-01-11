@@ -28,7 +28,7 @@ def register_mnt_rrd(target, dsNames, dsType='GAUGE'):
             datasource['dsType'] = dsType
             dataSources.append(datasource)
         _rrds[target] = RRDManip(filepath, settings.STEP,
-                                 datasource, roundRobinArchives)
+                                 dataSources, roundRobinArchives)
         _rrds[target].ensure_rrd()
 
 
