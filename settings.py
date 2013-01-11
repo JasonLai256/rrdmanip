@@ -59,14 +59,14 @@ AVERAGE_5M_6M_RRA = {
     'cf': 'AVERAGE',
     'xff': 0.5,
     'steps': 5,    # 5 min, 12 * 24 * 365 ~ 1 year
-    'rows': 105120
+    'rows': 52416
 }
 
 AVERAGE_5M_1Y_RRA = {
     'cf': 'AVERAGE',
     'xff': 0.5,
     'steps': 5,    # 5 min, 12 * 24 * 182 ~ 1 year
-    'rows': 52416
+    'rows': 105120
 }
 
 AVERAGE_30M_1Y_RRA = {
