@@ -48,6 +48,7 @@ MAX_1D_3Y_RRA = {
     'rows': 1100
 }
 
+
 AVERAGE_1M_1M_RRA = {
     'cf': 'AVERAGE',
     'xff': 0.5,
@@ -55,18 +56,25 @@ AVERAGE_1M_1M_RRA = {
     'rows': 43200
 }
 
-AVERAGE_5M_6M_RRA = {
+AVERAGE_5M_3M_RRA = {
     'cf': 'AVERAGE',
     'xff': 0.5,
-    'steps': 5,    # 5 min, 12 * 24 * 365 ~ 1 year
-    'rows': 52416
+    'steps': 5,    # 5 min, 12 * 24 * 92 ~ 3 month
+    'rows': 26496
 }
 
 AVERAGE_5M_1Y_RRA = {
     'cf': 'AVERAGE',
     'xff': 0.5,
-    'steps': 5,    # 5 min, 12 * 24 * 182 ~ 1 year
+    'steps': 5,    # 5 min, 12 * 24 * 365 ~ 1 year
     'rows': 105120
+}
+
+AVERAGE_30M_6M_RRA = {
+    'cf': 'AVERAGE',
+    'xff': 0.5,
+    'steps': 30,    # 30 min, 2 * 24 * 184 ~ 6 month 
+    'rows': 8832
 }
 
 AVERAGE_30M_1Y_RRA = {
@@ -93,6 +101,6 @@ AVERAGE_1D_3Y_RRA = {
 MAX_RRA = [MAX_5M_1Y_RRA, MAX_30M_1Y_RRA, MAX_2H_1Y_RRA, MAX_1D_3Y_RRA]
 AVERAGE_RRA = [AVERAGE_5M_1Y_RRA, AVERAGE_30M_1Y_RRA, AVERAGE_2H_1Y_RRA, AVERAGE_1D_3Y_RRA]
 
-PRECISE_MAX_RRA = [MAX_30M_1Y_RRA, MAX_2H_1Y_RRA, MAX_1D_3Y_RRA]
-PRECISE_AVERAGE_RRA = [AVERAGE_1M_1M_RRA, AVERAGE_5M_6M_RRA, AVERAGE_30M_1Y_RRA, AVERAGE_2H_1Y_RRA, AVERAGE_1D_3Y_RRA]
+PRECISE_MAX_RRA = [MAX_2H_1Y_RRA, MAX_1D_3Y_RRA]
+PRECISE_AVERAGE_RRA = [AVERAGE_1M_1M_RRA, AVERAGE_5M_3M_RRA, AVERAGE_30M_6M_RRA, AVERAGE_2H_1Y_RRA, AVERAGE_1D_3Y_RRA]
 
