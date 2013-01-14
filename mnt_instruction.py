@@ -5,7 +5,18 @@ from manipRRD import RRDManip, RRDGraph
 from instruction import figure_path
 
 
+PREP_ARGS = {
+    'defs': None,
+    'cdefs': None,
+    'vdefs': None,
+    'lines': None,
+    'areas': None,
+    'gprints': None,
+    'gcomments': None,
+}
+
 _rrds = {}
+_graph_args = {}
 
 
 def register_mnt_rrd(target, dsNames, dsType='GAUGE'):
@@ -36,3 +47,21 @@ def get_mnt_rrd(target):
     if target not in _rrds:
         _rrds[target] = None
     return _rrds[target]
+
+
+def register_graph_args(target, prep_args):
+    """Register the RRDGraph preparing arguments.
+
+    :param target: 用于构造 rrd 文件名以及做为内部rrd对象缓存的 key
+    :param prep_args: 确定设置 RRDGraph 的所需参数，为 dict 类型
+    """
+    global _graph_args
+    if (target not in _graph_args) or (_graph_args[target] is None):
+        _graph_args[target] = prep_args
+
+
+def get_graph_args(target):
+    global _graph_args
+    if target not in _graph_args:
+        _graph_args[target] = None
+    return _graph_args[target]
