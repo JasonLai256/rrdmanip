@@ -6,7 +6,6 @@ from instruction import figure_path
 
 
 _rrds = {}
-_graphs = {}
 
 
 def register_mnt_rrd(target, dsNames, dsType='GAUGE'):
@@ -32,28 +31,8 @@ def register_mnt_rrd(target, dsNames, dsType='GAUGE'):
         _rrds[target].ensure_rrd()
 
 
-def register_mnt_graph(target, init_args, prep_args):
-    """
-    Register a RRDGraph.
-
-    :param init_args: 初始化 RRDGraph 的所需参数，应该为 dict 类型
-    :param prep_args: 确定设置 RRDGraph 的所需参数，应该为 dict 类型
-    """
-    global _graphs
-    if (target not in _graphs) or (_graphs[target] is None):
-        _graphs[target] = RRDGraph(**init_args)
-        _graphs[target].prepare(**prep_args)
-
-
 def get_mnt_rrd(target):
     global _rrds
     if target not in _rrds:
         _rrds[target] = None
     return _rrds[target]
-
-def get_mnt_graph(target):
-    global _graphs
-    if target not in _graphs:
-        _graphs[target] = None
-    return _graphs[target]
-

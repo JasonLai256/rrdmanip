@@ -104,19 +104,26 @@ class RRDGraph(object):
             gcomments = []
         
         # check instance
-        if isinstance(defs, basestring):
+        if not isinstance(defs, list) and \
+                not isinstance(defs, tuple):
             defs = [defs]
-        if isinstance(cdefs, basestring):
+        if not isinstance(cdefs, list) and \
+                not isinstance(cdefs, tuple):
             cdefs = [cdefs]
-        if isinstance(vdefs, basestring):
+        if not isinstance(vdefs, list) and \
+                not isinstance(vdefs, tuple):
             vdefs = [vdefs]
-        if isinstance(lines, basestring):
+        if not isinstance(lines, list) and \
+                not isinstance(lines, tuple):
             lines = [lines]
-        if isinstance(areas, basestring):
+        if not isinstance(areas, list) and \
+                not isinstance(areas, tuple):
             areas = [areas]
-        if isinstance(gprints, basestring):
+        if not isinstance(gprints, list) and \
+                not isinstance(gprints, tuple):
             gprints = [gprints]
-        if isinstance(gcomments, basestring):
+        if not isinstance(gcomments, list) and \
+                not isinstance(gcomments, tuple):
             gcomments = [gcomments]
 
         args = defs + cdefs + vdefs + lines + areas + gprints + gcomments
