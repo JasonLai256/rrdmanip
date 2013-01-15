@@ -9,7 +9,8 @@ import os
 
 class RRDManip(object):
 
-    def __init__(self, filename, step, dataSources, roundRobinArchives):
+    def __init__(self, filename, step=None,
+                 dataSources=None, roundRobinArchives=None):
         """
         实例化 RRDManip 类对象。
         

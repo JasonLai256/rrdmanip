@@ -43,9 +43,27 @@ def register_mnt_rrd(target, dsNames, dsType='GAUGE'):
 
 
 def get_mnt_rrd(target):
+    """
+    获取 rrd 控制类，根据 target 缓存该对象。
+    """
     global _rrds
     if target not in _rrds:
         _rrds[target] = None
+    return _rrds[target]
+
+
+def load_mnt_rrd(target):
+    """
+    类似于 get_mnt_rrd，获取 rrd 控制对象，根据 target 缓存该对象。不同的是，
+    get_mnt_rrd 发现 target 不存在缓存中时，会直接返回 None，而 load_mnt_rrd
+    会创建 rrd 再返回控制对象。
+
+    :note: 使用 load_mnt_rrd 的默认前提是 target 对应的 rrd 控制对象是已经创建了。
+    """
+    global _rrds
+    if target not in _rrds:
+        _rrds[target] = RRDManip(filepath, None, None, None)
+        _rrds[target].ensure_rrd()
     return _rrds[target]
 
 

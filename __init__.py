@@ -9,7 +9,8 @@ __author__ = 'jason lai'
 
 
 from bw_instruction import get_bw_rrd, figure_bw_dsname
-from mnt_instruction import register_mnt_rrd, get_mnt_rrd, \
-                    register_graph_args, get_graph_args, PREP_ARGS
+from mnt_instruction import register_mnt_rrd, get_mnt_rrd, load_mnt_rrd \
+                            register_graph_args, get_graph_args, PREP_ARGS
+from manipRRD import RRDGraph, RRDManip
 
 
