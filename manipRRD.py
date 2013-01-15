@@ -132,7 +132,7 @@ class RRDGraph(object):
                            step=self.step, height=self.height, width=self.width,
                            title=self.title, vertical_label=self.vertical_label,
                            color=self.color)
-        self.graph.extend(args)
+        self.graph.data.extend(args)
 
     def plot(self):
         self.graph.write()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import settings
-from manipRRD import RRDManip, RRDGraph
+from manipRRD import RRDManip
 from instruction import figure_path
 
 
@@ -62,6 +62,7 @@ def load_mnt_rrd(target):
     """
     global _rrds
     if target not in _rrds:
+        filepath = figure_path(target)
         _rrds[target] = RRDManip(filepath, None, None, None)
         _rrds[target].ensure_rrd()
     return _rrds[target]
