@@ -5,16 +5,6 @@ from manipRRD import RRDManip
 from instruction import figure_path
 
 
-PREP_ARGS = {
-    'defs': None,
-    'cdefs': None,
-    'vdefs': None,
-    'lines': None,
-    'areas': None,
-    'gprints': None,
-    'gcomments': None,
-}
-
 _rrds = {}
 _graph_args = {}
 
