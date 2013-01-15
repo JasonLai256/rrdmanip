@@ -87,47 +87,7 @@ class RRDGraph(object):
         self.color = color
         self.graph = None        
 
-    def prepare(self, defs, cdefs, vdefs, lines, areas, gprints, gcomments):
-        # check None variable
-        if not defs:
-            defs = []
-        if not cdefs:
-            cdefs = []
-        if not vdefs:
-            vdefs = []
-        if not lines:
-            lines = []
-        if not areas:
-            areas = []
-        if not gprints:
-            gprints = []
-        if not gcomments:
-            gcomments = []
-        
-        # check instance
-        if not isinstance(defs, list) and \
-                not isinstance(defs, tuple):
-            defs = [defs]
-        if not isinstance(cdefs, list) and \
-                not isinstance(cdefs, tuple):
-            cdefs = [cdefs]
-        if not isinstance(vdefs, list) and \
-                not isinstance(vdefs, tuple):
-            vdefs = [vdefs]
-        if not isinstance(lines, list) and \
-                not isinstance(lines, tuple):
-            lines = [lines]
-        if not isinstance(areas, list) and \
-                not isinstance(areas, tuple):
-            areas = [areas]
-        if not isinstance(gprints, list) and \
-                not isinstance(gprints, tuple):
-            gprints = [gprints]
-        if not isinstance(gcomments, list) and \
-                not isinstance(gcomments, tuple):
-            gcomments = [gcomments]
-
-        args = defs + cdefs + vdefs + lines + areas + gprints + gcomments
+    def prepare(self, args):
         self.graph = Graph(self.filename, start=self.start, end=self.end,
                            step=self.step, height=self.height, width=self.width,
                            title=self.title, vertical_label=self.vertical_label,
