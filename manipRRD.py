@@ -13,7 +13,7 @@ class RRDManip(object):
                  dataSources=None, roundRobinArchives=None):
         """
         实例化 RRDManip 类对象。
-        
+
         :param filename: the name of the RRD you to manipulative
         :param dataSources: 相关的 data Source 队列
         :param roundRobinArchives: 相关的 rra 队列
@@ -61,7 +61,11 @@ class RRDManip(object):
         if not isinstance(values, list) and not isinstance(values, tuple):
             values = [values]
         self.rrd.bufferValue(timestamp, *values)
-        self.rrd.update()
+        try:
+            self.rrd.update()
+        except:
+            # 防止 脏数据 污染 update vslues
+            self.rrd.values = []
 
     def fetch(self, cf='AVERAGE', resolution=None, start=None, end=None, returnStyle="ds"):
         """
